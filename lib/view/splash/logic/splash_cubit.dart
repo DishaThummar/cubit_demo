@@ -9,4 +9,5 @@ class SplashCubit extends Cubit<SplashState> {
       emit(SplashProcess());
     });
   }
+
 }
