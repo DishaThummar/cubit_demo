@@ -21,6 +21,7 @@ class CommonTextField extends StatelessWidget {
   final int? minLine;
   final Widget? widgest;
   final bool readOnly;
+  final String? labelText;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final List<TextInputFormatter>? inputFormatters;
@@ -40,6 +41,7 @@ class CommonTextField extends StatelessWidget {
     this.validationMessage,
     this.topPadding,
     this.bottomPadding,
+    this.labelText,
     this.controller,
     this.isPhoneValidation = false,
     this.textInputType,
@@ -97,6 +99,7 @@ class CommonTextField extends StatelessWidget {
         controller: controller,
         obscureText: obscureText,
         inputFormatters: inputFormatters ?? [],
+
         // autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: textInputType ?? TextInputType.text,
         decoration: InputDecoration(
@@ -106,6 +109,10 @@ class CommonTextField extends StatelessWidget {
           suffixIcon: suffixIcon,
           prefixIcon: prefixIcon,
           counterText: '',
+          labelText: labelText,
+          labelStyle: AppTextStyle.regular500.copyWith(
+            color: AppColors.primaryColor
+          ),
           fillColor: AppColors.transparentColor,
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,

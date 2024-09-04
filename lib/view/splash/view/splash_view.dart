@@ -1,5 +1,5 @@
-import 'package:e_vital/view/home/view/home_view.dart';
 import 'package:e_vital/view/login/view/login_view.dart';
+import 'package:e_vital/view/order/view/order_view.dart';
 import 'package:e_vital/view/splash/logic/splash_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +22,7 @@ class SplashView extends StatelessWidget {
               if (status != null) {
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (_) => const HomeView()),
+                    MaterialPageRoute(builder: (_) => const OrderView()),
                     (route) => false);
               } else {
                 Navigator.pushAndRemoveUntil(

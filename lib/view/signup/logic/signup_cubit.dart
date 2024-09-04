@@ -35,50 +35,50 @@ class SignupCubit extends Cubit<SignupState> {
   bool otpSend = false;
   List signupDataList = [];
 
-  Future<void> signUpOtp() async {
-    final apiClient = ApiClient();
+    Future<void> signUpOtp() async {
+      final apiClient = ApiClient();
 
-    final data = {
-      "mobile": mobile.text,
-      "firstname": firstName.text,
-      "lastname": lastName.text,
-      "referral_code": "",
-      "platform": "android",
-      "user_id": "",
-      "patient_id": "",
-      "device_id": "9348d663fde2493f",
-      "accesstoken": "",
-      "fcmtoken":
-          "cjGb_15pQCWrrbSqVtu7oV:APA91bEEgVgLOpRKx43ruK4-JI80HGqZ9KUzSwz1zMc8f--rFjyLSl8WyBfL01gNLmhyqkfsF2FWD94CLE-Hfi2q1DMmnOC9apyhF62PH2lqfwussbqfHGnQJX-ODrRk3MU9emOBxTiX",
-      "app_version": "33",
-      "os": "android",
-      "apikey": "adDEWRWEF46546DFDSFsdfsfsdfsdfsl"
-    };
+      final data = {
+        "mobile": mobile.text,
+        "firstname": firstName.text,
+        "lastname": lastName.text,
+        "referral_code": "",
+        "platform": "android",
+        "user_id": "",
+        "patient_id": "",
+        "device_id": "9348d663fde2493f",
+        "accesstoken": "",
+        "fcmtoken":
+            "cjGb_15pQCWrrbSqVtu7oV:APA91bEEgVgLOpRKx43ruK4-JI80HGqZ9KUzSwz1zMc8f--rFjyLSl8WyBfL01gNLmhyqkfsF2FWD94CLE-Hfi2q1DMmnOC9apyhF62PH2lqfwussbqfHGnQJX-ODrRk3MU9emOBxTiX",
+        "app_version": "33",
+        "os": "android",
+        "apikey": "adDEWRWEF46546DFDSFsdfsfsdfsdfsl"
+      };
 
-    try {
-      final response = await apiClient.post(ApiConfig.signupOtp, data: data);
+      try {
+        final response = await apiClient.post(ApiConfig.signupOtp, data: data);
 
-      print(response.statusCode);
-      if (response.statusCode == 200) {
-        // Parse the response
-        final otpModel = OtpModel.fromJson(response.data);
-        print(otpModel.data?.mobile);
-        print(otpModel.statusCode);
-        if (otpModel.statusCode == "1") {
-          emit(SignUpApiMessage(message: true));
-          showSnackbar(message: "Otp Send Successfully.");
-          // emit(SignUpApiOtp());
+        print(response.statusCode);
+        if (response.statusCode == 200) {
+          // Parse the response
+          final otpModel = OtpModel.fromJson(response.data);
+          print(otpModel.data?.mobile);
+          print(otpModel.statusCode);
+          if (otpModel.statusCode == "1") {
+            emit(SignUpApiMessage(message: true));
+            showSnackbar(message: "Otp Send Successfully.");
+            // emit(SignUpApiOtp());
+          } else {
+            emit(SignUpApiError(error: "${otpModel.statusMessage}"));
+          }
         } else {
-          emit(SignUpApiError(error: "${otpModel.statusMessage}"));
+          print("Error: ${response.statusMessage}");
+          emit(SignUpApiError(error: "${response.statusMessage}"));
         }
-      } else {
-        print("Error: ${response.statusMessage}");
-        emit(SignUpApiError(error: "${response.statusMessage}"));
+      } catch (e) {
+        print('Error: $e');
       }
-    } catch (e) {
-      print('Error: $e');
     }
-  }
 
   Future<void> signUp() async {
     final apiClient = ApiClient();

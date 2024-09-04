@@ -35,13 +35,8 @@ commonButton({
           const EdgeInsets.only(top: 12, bottom: 12, right: 16, left: 16),
       decoration: BoxDecoration(
         color: backColor ?? AppColors.primaryColor.withOpacity(0.8),
-        borderRadius: BorderRadius.circular(0),
-
+        borderRadius: BorderRadius.circular(borderRadius ?? 0),
         border: Border.all(color: borderColor ?? AppColors.whiteColor),
-        // gradient: LinearGradient(colors: [
-        //   AppColors.primaryColor,
-        //   AppColors.primaryColor.withOpacity(0.7),
-        // ], begin: Alignment.topLeft, end: Alignment.bottomRight),
       ),
       child: Row(
         mainAxisSize: isExpand ? MainAxisSize.max : MainAxisSize.min,

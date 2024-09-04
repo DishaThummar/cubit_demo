@@ -1,13 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:e_vital/configs/api_config.dart';
 import 'package:e_vital/utils/dio_http.dart';
-import 'package:e_vital/view/home/model/login_model.dart';
+import 'package:e_vital/view/login/model/login_model.dart';
 import 'package:e_vital/widgest/common_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -45,6 +43,7 @@ class LoginCubit extends Cubit<LoginState> {
       if (response.statusCode == 200) {
         final loginModel = LoginModel.fromJson(response.data);
         print(loginModel.data);
+        print("7890-0987890 s${loginModel.data?.id}");
         if (loginModel.data != null) {
           loginDataList.add({
             "id": loginModel.data?.id,

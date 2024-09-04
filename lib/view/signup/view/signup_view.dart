@@ -2,8 +2,6 @@
 
 import 'package:e_vital/configs/app_colors.dart';
 import 'package:e_vital/configs/app_text_style.dart';
-import 'package:e_vital/view/home/logic/home_cubit.dart';
-import 'package:e_vital/view/home/view/home_view.dart';
 import 'package:e_vital/view/login/view/login_view.dart';
 import 'package:e_vital/view/signup/logic/signup_cubit.dart';
 import 'package:e_vital/widgest/app_button.dart';

@@ -1,4 +1,3 @@
-import 'package:e_vital/view/signup/view/signup_view.dart';
 import 'package:e_vital/view/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
 

@@ -5,5 +5,6 @@ class ApiConfig {
   static const login = "/login";
   static const signup = "/login/signup";
   static const signupOtp = "/login/signup_sendotp";
+  static const order = "/orders/list";
 
 }
