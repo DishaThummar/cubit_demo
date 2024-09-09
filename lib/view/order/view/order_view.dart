@@ -789,6 +789,9 @@ class _OrderViewState extends State<OrderView> {
         });
         return Scaffold(
           appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: AppColors.whiteColor
+            ),
             title: Text(
               "My Orders",
               style: AppTextStyle.regular400

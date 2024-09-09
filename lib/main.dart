@@ -1,3 +1,4 @@
+import 'package:e_vital/view/home/view/home_view.dart';
 import 'package:e_vital/view/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashView(),
+      home: const HomeView(),
     );
   }
 }

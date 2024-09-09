@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'order_state.dart';
+
 //
 // class OrderCubit extends Cubit<OrderState> {
 //   OrderCubit() : super(OrderInitial()) {
@@ -81,16 +82,15 @@ part 'order_state.dart';
 // }
 class OrderCubit extends Cubit<OrderState> {
   OrderCubit() : super(OrderInitial()) {
-
     scrollController.addListener(() {
       // if (scrollController.position.atEdge) {
-        if (scrollController.position.pixels != 0) {
-          loadOrder();
-        }else{
-        }
+      if (scrollController.position.pixels != 0) {
+        loadOrder();
+      } else {}
       // }
     });
   }
+
   final scrollController = ScrollController();
 
   void setupScrollController(context) {
@@ -132,20 +132,20 @@ class OrderCubit extends Cubit<OrderState> {
       oldOrder = currentState.order;
     }
 
-    // Emit the loading state with the existing order list (if any)
     emit(OrderLoading(order: oldOrder, isFirstFetch: page == 1));
 
     fetchOrders().then((newOrders) {
-
       if (state is OrderLoading) {
         final loadingState = state as OrderLoading;
         final order = loadingState.order;
-        order!.addAll(newOrders);
-
-        emit(OrderLoaded(order));
+        if (order != null) {
+          order.addAll(newOrders);
+          emit(OrderLoaded(order));
+        }
       }
     }).catchError((error) {
       emit(OrderError(error: "$error"));
+      print("098790-=-09890-0989:::::::::!2");
     });
   }
 
@@ -158,7 +158,7 @@ class OrderCubit extends Cubit<OrderState> {
         "device_id": "465d4664c7ea102f",
         "accesstoken": "Ol9afMJ5vSAuMFz5",
         "fcmtoken":
-            "cUzBqyx5SoiE25F5ew9rsr:APA91bFEDPYNjrQOWlXI4wkmXA_-SQP3YzhRATm-ADYrFJjwlbHycCFb6nhqKvQDyMzSidEKO9_APpegHuFTKQbOAGd-ByU7SnvttStoFJX3kfc_ozsBeYCf1H6qoqPA_3e-szEPqhKE",
+        "cUzBqyx5SoiE25F5ew9rsr:APA91bFEDPYNjrQOWlXI4wkmXA_-SQP3YzhRATm-ADYrFJjwlbHycCFb6nhqKvQDyMzSidEKO9_APpegHuFTKQbOAGd-ByU7SnvttStoFJX3kfc_ozsBeYCf1H6qoqPA_3e-szEPqhKE",
         "app_version": "12",
         "os": "android",
         "apikey": "32ratvKzvbA0dPwk7VT3v2bzJzgPFJdt",
@@ -167,20 +167,32 @@ class OrderCubit extends Cubit<OrderState> {
         "order_number": "",
         "bill_no": ""
       };
-      final response = await apiClient.post(ApiConfig.order, data: data);
-      if (response.statusCode == 200) {
-        final orderModel = OrderModel.fromJson(response.data);
-        orderList = orderModel.data?.results ?? [];
-        filteredOrderList = orderList;
-        emit(OrderSuccess());
-        emit(OrderList(order: filteredOrderList));
-        page++;
 
+      final response = await apiClient.post(ApiConfig.order, data: data);
+      print(response);
+      print(response.data);
+      if (response.statusCode == 200) {
+        print("098790-=0987890-");
+        final orderModel = OrderModel.fromJson(response.data);
+        print("orderModel");
+
+        if (orderModel.data != null && orderModel.data!.results != null) {
+          orderList = orderModel.data!.results!;
+          filteredOrderList = orderList;
+          emit(OrderSuccess());
+          emit(OrderList(order: filteredOrderList));
+          page++;
+          print("Data fetched and lists updated.");
+        } else {
+          emit(OrderError(error: "No results found."));
+        }
       } else {
+        print("API request failed with status code: ${response.statusCode}");
         emit(OrderError(error: "${response.statusMessage}"));
       }
     } catch (e) {
-      emit(OrderError(error: "$e"));
+      emit(OrderError(error: "Exception: $e"));
+      print("An exception occurred: $e");
     }
   }
 

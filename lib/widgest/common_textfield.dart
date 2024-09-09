@@ -27,6 +27,7 @@ class CommonTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final bool isTransparentColorBorder;
   final bool isSmallTitle;
+  final Color? fillColor;
   final bool obscureText;
   final String? Function(String?)? validator;
   final void Function(String?)? onChange;
@@ -54,6 +55,7 @@ class CommonTextField extends StatelessWidget {
     this.isSmallTitle = false,
     this.obscureText = false,
     this.prefixIcon,
+    this.fillColor,
     this.validator,
     this.isPasswordValidation = false,
     this.onChange,
@@ -113,10 +115,10 @@ class CommonTextField extends StatelessWidget {
           labelStyle: AppTextStyle.regular500.copyWith(
             color: AppColors.primaryColor
           ),
-          fillColor: AppColors.transparentColor,
+          fillColor: fillColor ?? AppColors.transparentColor,
           contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 16,
+            horizontal: 10,
+            vertical: 10,
           ),
           suffix: widgest,
           hintStyle: AppTextStyle.regular400
