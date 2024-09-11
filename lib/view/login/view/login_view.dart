@@ -1,7 +1,7 @@
 import 'package:e_vital/configs/app_colors.dart';
 import 'package:e_vital/configs/app_text_style.dart';
 import 'package:e_vital/view/login/logic/login_cubit.dart';
-import 'package:e_vital/view/order/view/order_view.dart';
+import 'package:e_vital/view/order/order_screen.dart';
 import 'package:e_vital/view/signup/view/signup_view.dart';
 import 'package:e_vital/widgest/app_button.dart';
 import 'package:e_vital/widgest/common_snackbar.dart';
@@ -108,7 +108,7 @@ class LoginView extends StatelessWidget {
                               Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => OrderView(),
+                                    builder: (context) => OrderScreen(),
                                   ),
                                   (route) => false);
                             }

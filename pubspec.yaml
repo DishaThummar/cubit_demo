@@ -37,10 +37,15 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_bloc:
   pinput:
+  pretty_dio_logger:
+  pull_to_refresh:
   fluttertoast:
   dio:
   shared_preferences: ^2.3.2
   intl:
+  permission_handler:
+  image_picker:
+
 
 dev_dependencies:
   flutter_test:

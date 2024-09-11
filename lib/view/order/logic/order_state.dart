@@ -1,28 +1,17 @@
 part of 'order_cubit.dart';
 
-sealed  class OrderState{}
+@immutable
+sealed class OrderState {}
 
-class OrderInitial extends OrderState{}
-class   OrderLoading extends OrderState{
-  final List<Result>? order;
-  final bool isFirstFetch;
-  OrderLoading({ this.order,this.isFirstFetch=false});
+final class OrderInitial extends OrderState {}
+class OrdersLoading extends OrderState {}
 
-}
-class OrderSuccess extends OrderState{}
-class OrderError extends OrderState{
-  String error;
-  OrderError({required this.error});
-}
-class OrderList extends OrderState{
-  List<Result>? order;
-  OrderList({ this.order});
-}
-class OrderLoaded extends OrderState {
-  final List<Result> order;
-
-  OrderLoaded(this.order);
+class OrdersSuccess extends OrderState {
+  final List<OrderModel> orders;
+  OrdersSuccess(this.orders);
 }
 
-
-class OrderLoad extends OrderState{}
+class OrdersError extends OrderState {
+  final String message;
+  OrdersError(this.message);
+}
