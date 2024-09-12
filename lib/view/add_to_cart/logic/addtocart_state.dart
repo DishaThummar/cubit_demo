@@ -4,6 +4,13 @@ part of 'addtocard_cubit.dart';
 sealed class AddToCartState {}
 
 class AddToCartInitial extends AddToCartState {}
+class ScanLoading extends AddToCartState {}
+class ScanSuccess extends AddToCartState {
+  var scan;
+
+  ScanSuccess({required this.scan});
+
+}
 
 class AddToCartSuccess extends AddToCartInitial {
   final List<SearchData> dataList;

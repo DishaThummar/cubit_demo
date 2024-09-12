@@ -255,7 +255,7 @@ class SearchView extends StatelessWidget {
               },
               suffixIcon: const Icon(
                 Icons.document_scanner_outlined,
-                color: AppColors.primaryColor,
+                color: AppColors.transparentColor,
               ),
               onChange: (value) {
                 context.read<SearchCubit>().statusFn(value);
@@ -426,92 +426,94 @@ class SearchView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 16),
-                                child: Image.network(
-                                  item.image ?? '',
-                                  height: 30,
-                                  width: 30,
-                                  fit: BoxFit.fill,
+                          SingleChildScrollView(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 16),
+                                  child: Image.network(
+                                    item.image ?? '',
+                                    height: 30,
+                                    width: 30,
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 16, right: 16, top: 8, bottom: 8),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      width: 250,
-                                      child: Text(
-                                        item.medicineName ?? 'Unknown Medicine',
-                                        style: AppTextStyle.regular500
-                                            .copyWith(fontSize: 18),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Text(item.packingSize ?? 'Unknown Size'),
-                                    const SizedBox(height: 5),
-                                    SizedBox(
-                                      width: 200,
-                                      child: Text(
-                                        item.manufacturerName ??
-                                            'Unknown Manufacturer',
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "₹ ${item.price ?? 'N/A'}",
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 16, right: 16, top: 8, bottom: 8),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: 250,
+                                        child: Text(
+                                          item.medicineName ?? 'Unknown Medicine',
                                           style: AppTextStyle.regular500
-                                              .copyWith(
-                                                  color:
-                                                      AppColors.primaryColor),
+                                              .copyWith(fontSize: 18),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
-                                        SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.3,
+                                      ),
+                                      const SizedBox(height: 5),
+                                      Text(item.packingSize ?? 'Unknown Size'),
+                                      const SizedBox(height: 5),
+                                      SizedBox(
+                                        width: 200,
+                                        child: Text(
+                                          item.manufacturerName ??
+                                              'Unknown Manufacturer',
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            AddToCartCubit cubit =
-                                                BlocProvider.of<AddToCartCubit>(
-                                                    context);
-
-                                            cubit.addToCart(item);
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              border: Border.all(
-                                                color: AppColors.blackColor
-                                                    .withOpacity(0.5),
-                                              ),
-                                            ),
-                                            height: 30,
-                                            padding: const EdgeInsets.all(5),
-                                            child: const Text("Add Cart"),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "₹ ${item.price ?? 'N/A'}",
+                                            style: AppTextStyle.regular500
+                                                .copyWith(
+                                                    color:
+                                                        AppColors.primaryColor),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                          SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              AddToCartCubit cubit =
+                                                  BlocProvider.of<AddToCartCubit>(
+                                                      context);
+
+                                              cubit.addToCart(item);
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                border: Border.all(
+                                                  color: AppColors.blackColor
+                                                      .withOpacity(0.5),
+                                                ),
+                                              ),
+                                              height: 30,
+                                              padding: const EdgeInsets.all(5),
+                                              child: const Text("Add Cart"),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           const Divider(),
                         ],

@@ -69,7 +69,7 @@ class HomeView extends StatelessWidget {
                     },
                     suffixIcon: const Icon(
                       Icons.document_scanner_outlined,
-                      color: AppColors.primaryColor,
+                      color: AppColors.transparentColor,
                     ),
                     onChange: (value) {
                       if (value!.isNotEmpty) {

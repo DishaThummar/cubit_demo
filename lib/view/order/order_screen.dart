@@ -17,7 +17,7 @@ class OrderScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           foregroundColor: AppColors.whiteColor,
-          backgroundColor: AppColors.blueColor,
+          backgroundColor: AppColors.primaryColor,
           title: const Text(
             "My Orders",
             style: TextStyle(
@@ -38,7 +38,8 @@ class OrderScreen extends StatelessWidget {
                     icon:  const Icon(
                       Icons.list,
                       color: AppColors.whiteColor,
-                    ));
+                    )
+                );
               },
             )
           ],
@@ -206,22 +207,10 @@ class OrderScreen extends StatelessWidget {
                                     border: Border.all(
                                       color: AppColors.blueColor,
                                     )),
-                                child: const Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(
-                                      Icons.refresh,
+                                child: Text("Reset",
+                                    style: TextStyle(
                                       color: AppColors.blueColor,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("Reset",
-                                        style: TextStyle(
-                                          color: AppColors.blueColor,
-                                        )),
-                                  ],
-                                ),
+                                    )),
                               ),
                             ),
                           ),
@@ -239,30 +228,19 @@ class OrderScreen extends StatelessWidget {
                                     border: Border.all(
                                       color: AppColors.blueColor,
                                     )),
-                                child: const Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(
-                                      Icons.search,
+                                child:  Text("Apply",
+                                    style: TextStyle(
                                       color: AppColors.whiteColor,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("Apply",
-                                        style: TextStyle(
-                                          color: AppColors.whiteColor,
-                                        )),
-                                  ],
-                                ),
+                                    )),
                               ),
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
-                )
+                ),
+                  SizedBox(height: 20,),
               ],
             ),
           );
@@ -365,7 +343,7 @@ class OrderScreen extends StatelessWidget {
                   "₹ ${orderModel.amount}",
                   style: const TextStyle(
                       color: AppColors.blueColor,
-                      fontSize: 17s,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold),
                 ),
               ],
