@@ -25,23 +25,7 @@ class OrderScreen extends StatelessWidget {
             ),
           ),
           actions: [
-            BlocBuilder<OrderCubit, OrderState>(
-              builder: (context, state) {
-                return IconButton(
-                    onPressed: () => _showActionSheet(context, () {
-                          Navigator.pop(context);
-                          BlocProvider.of<OrderCubit>(context).onReset();
-                        }, () {
-                          Navigator.pop(context);
-                          BlocProvider.of<OrderCubit>(context).onFilterApply();
-                        }),
-                    icon:  const Icon(
-                      Icons.list,
-                      color: AppColors.whiteColor,
-                    )
-                );
-              },
-            )
+            actionWidgest()
           ],
         ),
         body: BlocBuilder<OrderCubit, OrderState>(builder: (context, state) {
@@ -96,6 +80,26 @@ class OrderScreen extends StatelessWidget {
         }),
       ),
     );
+  }
+
+  BlocBuilder<OrderCubit, OrderState> actionWidgest() {
+    return BlocBuilder<OrderCubit, OrderState>(
+            builder: (context, state) {
+              return IconButton(
+                  onPressed: () => _showActionSheet(context, () {
+                        Navigator.pop(context);
+                        BlocProvider.of<OrderCubit>(context).onReset();
+                      }, () {
+                        Navigator.pop(context);
+                        BlocProvider.of<OrderCubit>(context).onFilterApply();
+                      }),
+                  icon:  const Icon(
+                    Icons.list,
+                    color: AppColors.whiteColor,
+                  )
+              );
+            },
+          );
   }
 
   void _showActionSheet(

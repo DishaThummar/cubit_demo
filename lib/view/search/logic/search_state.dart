@@ -4,6 +4,8 @@ part of 'search_cubit.dart';
 sealed class SearchState {}
 
 class SearchInitial extends SearchState {}
+class SearchLoading extends SearchState {}
+class SearchLoaded extends SearchState {}
 
 
 class SearchSuccess extends SearchState {
@@ -27,7 +29,7 @@ class ImageSuccess extends SearchState {
 }
 
 class AddSuccess extends SearchState {
-  final List<SearchData> data;
+  var data;
 
   AddSuccess({required this.data});
 }

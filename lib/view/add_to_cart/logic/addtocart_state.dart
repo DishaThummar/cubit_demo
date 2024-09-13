@@ -23,3 +23,16 @@ class AddSuccess extends AddToCartState {
 
   AddSuccess({required this.data});
 }
+
+class CartSuccess extends AddToCartState {
+  bool success;
+
+  CartSuccess({required this.success});
+
+}
+
+class ImageSuccess extends AddToCartState {
+  final List images;
+
+  ImageSuccess({required this.images});
+}

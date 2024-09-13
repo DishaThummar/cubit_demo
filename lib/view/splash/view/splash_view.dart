@@ -13,29 +13,32 @@ class SplashView extends StatelessWidget {
     return BlocProvider(
       create: (context) => SplashCubit(),
       child: Scaffold(
-        body: BlocListener<SplashCubit, SplashState>(
-          listener: (_, state) async {
-            if (state is SplashProcess) {
-              final SharedPreferences prefs =
-                  await SharedPreferences.getInstance();
-              var status = prefs.getString('login');
-              if (status != null) {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (_) =>  OrderScreen()),
-                    (route) => false);
-              } else {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (_) => const LoginView()),
-                    (route) => false);
-              }
-            }
-          },
-          child: const Center(
-            child: Text("Welcome"),
-          ),
-        ),
+        body: splashWidgest(context),
+      ),
+    );
+  }
+
+  splashWidgest(BuildContext context) {
+    return BlocListener<SplashCubit, SplashState>(
+      listener: (_, state) async {
+        if (state is SplashProcess) {
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          var status = prefs.getString('login');
+          if (status != null) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => OrderScreen()),
+                (route) => false);
+          } else {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => const LoginView()),
+                (route) => false);
+          }
+        }
+      },
+      child: const Center(
+        child: Text("Welcome"),
       ),
     );
   }

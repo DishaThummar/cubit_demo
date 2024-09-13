@@ -1,9 +1,10 @@
 import 'package:e_vital/view/home/view/home_view.dart';
-import 'package:e_vital/view/splash/view/splash_view.dart';
+import 'package:e_vital/widgest/hive_initialize.dart';
 import 'package:flutter/material.dart';
 
-
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  HiveDb.init();
   runApp(const MyApp());
 }
 
@@ -23,4 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

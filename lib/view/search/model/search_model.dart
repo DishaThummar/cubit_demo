@@ -88,10 +88,11 @@ class SearchData {
   int quantity;
   String? thumbImage;
   int? isRxRequired;
-
+  bool isInCart;
   SearchData({
     this.dosageType,
     this.availableForPatient,
+    this.isInCart = false,
     this.cessPercentage,
     this.requestedByEntity,
     this.content,
@@ -128,6 +129,7 @@ class SearchData {
     gstPercentage: json["gst_percentage"],
     hsnCode: json["hsn_code"],
     image: json["image"],
+    isInCart: json['isInCart'] ?? false,
     manufacturerName: json["manufacturer_name"],
     medicineId: json["medicine_id"],
     medicineName: json["medicine_name"],
@@ -158,6 +160,7 @@ class SearchData {
     "gst_percentage": gstPercentage,
     "hsn_code": hsnCode,
     "image": image,
+    'isInCart': isInCart,
     "manufacturer_name": manufacturerName,
     "medicine_id": medicineId,
     "medicine_name": medicineName,

@@ -46,6 +46,9 @@ dependencies:
   permission_handler:
   flutter_barcode_scanner: ^2.0.0
   image_picker:
+  shimmer:
+  path_provider:
+  hive:
 
 
 dev_dependencies:
